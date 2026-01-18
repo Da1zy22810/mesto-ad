@@ -119,7 +119,6 @@
         </div>
       </div>
 
-      <!-- Модальное окно подтверждения удаления -->
       <div class="popup popup_type_remove-card">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
@@ -155,8 +154,6 @@
           </form>
         </div>
       </div>
-
-      <!-- Модальное окно статистики карточки -->
       <div class="popup popup_type_info">
         <div class="popup__content popup__content_content_info">
           <button type="button" class="popup__close"></button>
@@ -170,7 +167,6 @@
 
     <script src="./src/scripts/index.js" defer type="module"></script>
 
-    <!-- Шаблон карточки -->
     <template id="card-template">
       <li class="places__item card">
         <div class="card__control">
@@ -188,7 +184,6 @@
       </li>
     </template>
 
-    <!-- Шаблон строки информации в модалке "Статистика" -->
     <template id="popup-info-definition-template">
       <div class="popup__info-item">
         <dt class="popup__info-term"></dt>
@@ -196,7 +191,6 @@
       </div>
     </template>
 
-    <!-- Шаблон аватара пользователя, поставившего лайк -->
     <template id="popup-info-user-preview-template">
       <li class="popup__list-item popup__list-item_type_badge">
         <img class="popup-info__user-avatar" src="" alt="" />
