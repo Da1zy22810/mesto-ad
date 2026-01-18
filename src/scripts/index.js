@@ -6,7 +6,6 @@
   Из index.js не допускается что-то экспортировать
 */
 
-// Импорты API
 import {
   getUserInfo,
   getCardList,
@@ -17,12 +16,10 @@ import {
   changeLikeCardStatus,
 } from "./components/api.js";
 
-// Импорты компонентов
 import { createCardElement } from "./components/card.js";
 import { openModalWindow, closeModalWindow, setCloseModalWindowEventListeners } from "./components/modal.js";
 import { enableValidation, clearValidation } from "./components/validation.js";
 
-// DOM узлы
 const placesWrap = document.querySelector(".places__list");
 const profileFormModalWindow = document.querySelector(".popup_type_edit");
 const profileForm = profileFormModalWindow.querySelector(".popup__form");
@@ -58,10 +55,8 @@ const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileAvatar = document.querySelector(".profile__image");
 
-// Глобальная переменная для хранения ID текущего пользователя
 let currentUserId = null;
 
-// Обработчики
 const handlePreviewPicture = ({ name, link }) => {
   imageElement.src = link;
   imageElement.alt = name;
@@ -141,7 +136,6 @@ const handleCardFormSubmit = (evt) => {
     });
 };
 
-// Обработчик лайка
 const handleLikeCard = (cardId, likeButton, likeCountElement) => {
   const isLiked = likeButton.classList.contains("card__like-button_is-active");
 
@@ -155,7 +149,6 @@ const handleLikeCard = (cardId, likeButton, likeCountElement) => {
     });
 };
 
-// Обработчик удаления (с подтверждением)
 let cardToDelete = null;
 let cardElementToDelete = null;
 
@@ -177,7 +170,6 @@ const handleRemoveCardConfirm = (evt) => {
     });
 };
 
-// Обработчик статистики карточки
 const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString("ru-RU", {
     year: "numeric",
@@ -219,7 +211,6 @@ const handleInfoClick = (cardId) => {
       likesTitle.innerHTML = `<dt class="popup__info-term">Лайки (${cardData.likes.length}):</dt>`;
       infoList.append(likesTitle);
 
-      // Список пользователей
       cardData.likes.forEach((user) => {
         infoUsersList.append(createUserPreview(user));
       });
@@ -231,7 +222,6 @@ const handleInfoClick = (cardId) => {
     });
 };
 
-// Настройки валидации
 const validationSettings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -241,16 +231,13 @@ const validationSettings = {
   errorClass: "popup__error_visible",
 };
 
-// Включение валидации
 enableValidation(validationSettings);
 
-// Слушатели отправки форм
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 cardForm.addEventListener("submit", handleCardFormSubmit);
 avatarForm.addEventListener("submit", handleAvatarFormSubmit);
 removeCardForm.addEventListener("submit", handleRemoveCardConfirm);
 
-// Открытие попапов
 openProfileFormButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -270,13 +257,11 @@ openCardFormButton.addEventListener("click", () => {
   clearValidation(cardForm, validationSettings);
 });
 
-// Закрытие модалок
 const allPopups = document.querySelectorAll(".popup");
 allPopups.forEach((popup) => {
   setCloseModalWindowEventListeners(popup);
 });
 
-// Загрузка данных с сервера
 Promise.all([getCardList(), getUserInfo()])
   .then(([cards, userData]) => {
     currentUserId = userData._id;
