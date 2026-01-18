@@ -204,11 +204,11 @@ const handleInfoClick = (cardId) => {
 
       infoList.append(createInfoString("Дата создания:", formatDate(cardData.createdAt)));
 
-      infoList.append(createInfoString("Автор:", cardData.owner.name));
+      infoList.append(createInfoString("Владелец:", cardData.owner.name));
 
       const likesTitle = document.createElement("li");
       likesTitle.className = "popup__info-item";
-      likesTitle.innerHTML = `<dt class="popup__info-term">Лайки (${cardData.likes.length}):</dt>`;
+      likesTitle.innerHTML = `<dt class="popup__info-term"> Количество лайков: (${cardData.likes.length})</dt>`;
       infoList.append(likesTitle);
 
       cardData.likes.forEach((user) => {
