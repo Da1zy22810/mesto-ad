@@ -71,6 +71,6 @@ export const deleteCard = (cardId) => {
 export const changeLikeCardStatus = (cardId, isLiked) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: isLiked ? "DELETE" : "PUT",
-    headers: config.headers,
+    headers: config.headers
   }).then(getResponseData);
 };

@@ -89,7 +89,7 @@ const handleProfileFormSubmit = (evt) => {
       closeModalWindow(profileFormModalWindow);
     })
     .catch((err) => {
-      console.error("Ошибка обновления профиля:", err);
+      console.log(err);
     })
     .finally(() => {
       renderLoading(profileSubmitButton, false);
@@ -207,17 +207,13 @@ const handleInfoClick = (cardId) => {
       const cardData = cards.find((card) => card._id === cardId);
       if (!cardData) throw new Error("Карточка не найдена");
 
-      // Очистка
       infoList.innerHTML = "";
       infoUsersList.innerHTML = "";
 
-      // Дата создания
       infoList.append(createInfoString("Дата создания:", formatDate(cardData.createdAt)));
 
-      // Автор
       infoList.append(createInfoString("Автор:", cardData.owner.name));
 
-      // Лайки
       const likesTitle = document.createElement("li");
       likesTitle.className = "popup__info-item";
       likesTitle.innerHTML = `<dt class="popup__info-term">Лайки (${cardData.likes.length}):</dt>`;
